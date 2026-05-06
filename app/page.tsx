@@ -68,6 +68,7 @@ const saveMessagesToStorage = (messages: UIMessage[], durations: Record<string, 
 export default function Chat() {
   const [isClient, setIsClient] = useState(false);
   const [durations, setDurations] = useState<Record<string, number>>({});
+  const [avatarSrc, setAvatarSrc] = useState('/logo.png');
   const welcomeMessageShownRef = useRef<boolean>(false);
 
   const stored = typeof window !== 'undefined' ? loadMessagesFromStorage() : { messages: [], durations: {} };
@@ -81,6 +82,10 @@ export default function Chat() {
     setIsClient(true);
     setDurations(stored.durations);
     setMessages(stored.messages);
+    fetch('/api/avatar?key=jungkook_profile')
+      .then((r) => r.json())
+      .then((data) => { if (data.url) setAvatarSrc(data.url); })
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -147,9 +152,9 @@ export default function Chat() {
                 <Avatar
                   className="size-8 ring-1 ring-primary"
                 >
-                  <AvatarImage src="/logo.png" />
+                  <AvatarImage src={avatarSrc} />
                   <AvatarFallback>
-                    <Image src="/logo.png" alt="Logo" width={36} height={36} />
+                    <Image src={avatarSrc} alt="Jungkook" width={36} height={36} />
                   </AvatarFallback>
                 </Avatar>
                 <p className="tracking-tight">Chat with {AI_NAME}</p>
