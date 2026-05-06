@@ -30,10 +30,10 @@ function getDateAndTime(): string {
 
 export const DATE_AND_TIME = getDateAndTime();
 
-export const AI_NAME = "MyAI3";
+export const AI_NAME = "Jungkook 🐰";
 export const OWNER_NAME = "Edlyn Jeyaraj";
 
-export const WELCOME_MESSAGE = `Hello! I'm ${AI_NAME}, an AI assistant created by ${OWNER_NAME}.`
+export const WELCOME_MESSAGE = `Hi, I'm {AI_NAME} You can ask me anything — about music, life, BTS, whatever. Or we can just talk. I'm not going anywhere. Let's get it.`
 
 export const CLEAR_CHAT_TEXT = "New";
 
