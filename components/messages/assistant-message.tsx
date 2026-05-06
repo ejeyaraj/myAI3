@@ -2,11 +2,20 @@ import { UIMessage, ToolCallPart, ToolResultPart } from "ai";
 import { Response } from "@/components/ai-elements/response";
 import { ReasoningPart } from "./reasoning-part";
 import { ToolCall, ToolResult } from "./tool-call";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Image from "next/image";
 
-export function AssistantMessage({ message, status, isLastMessage, durations, onDurationChange }: { message: UIMessage; status?: string; isLastMessage?: boolean; durations?: Record<string, number>; onDurationChange?: (key: string, duration: number) => void }) {
+export function AssistantMessage({ message, status, isLastMessage, durations, onDurationChange, avatarSrc }: { message: UIMessage; status?: string; isLastMessage?: boolean; durations?: Record<string, number>; onDurationChange?: (key: string, duration: number) => void; avatarSrc?: string }) {
+    const src = avatarSrc ?? '/logo.png';
     return (
-        <div className="w-full">
-            <div className="text-sm flex flex-col gap-4">
+        <div className="w-full flex gap-2 items-start">
+            <Avatar className="size-7 ring-1 ring-primary shrink-0 mt-0.5">
+                <AvatarImage src={src} className="object-cover" />
+                <AvatarFallback>
+                    <Image src={src} alt="Jungkook" width={28} height={28} className="object-cover" />
+                </AvatarFallback>
+            </Avatar>
+            <div className="text-sm flex flex-col gap-4 min-w-0 flex-1">
                 {message.parts.map((part, i) => {
                     const isStreaming = status === "streaming" && isLastMessage && i === message.parts.length - 1;
                     const durationKey = `${message.id}-${i}`;
@@ -47,5 +56,5 @@ export function AssistantMessage({ message, status, isLastMessage, durations, on
                 })}
             </div>
         </div>
-    )
+    );
 }
