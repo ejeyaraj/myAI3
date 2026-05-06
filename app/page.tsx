@@ -152,9 +152,9 @@ export default function Chat() {
                 <Avatar
                   className="size-8 ring-1 ring-primary"
                 >
-                  <AvatarImage src={avatarSrc} />
+                  <AvatarImage src={avatarSrc} className="object-cover" />
                   <AvatarFallback>
-                    <Image src={avatarSrc} alt="Jungkook" width={36} height={36} />
+                    <Image src={avatarSrc} alt="Jungkook" width={36} height={36} className="object-cover" />
                   </AvatarFallback>
                 </Avatar>
                 <p className="tracking-tight">Chat with {AI_NAME}</p>
@@ -177,7 +177,7 @@ export default function Chat() {
           <div className="flex flex-col items-center justify-end min-h-full">
             {isClient ? (
               <>
-                <MessageWall messages={messages} status={status} durations={durations} onDurationChange={handleDurationChange} />
+                <MessageWall messages={messages} status={status} durations={durations} onDurationChange={handleDurationChange} avatarSrc={avatarSrc} />
                 {status === "submitted" && (
                   <div className="flex justify-start max-w-3xl w-full">
                     <Loader2 className="size-4 animate-spin text-muted-foreground" />

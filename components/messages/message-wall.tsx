@@ -4,7 +4,7 @@ import { UserMessage } from "./user-message";
 import { AssistantMessage } from "./assistant-message";
 
 
-export function MessageWall({ messages, status, durations, onDurationChange }: { messages: UIMessage[]; status?: string; durations?: Record<string, number>; onDurationChange?: (key: string, duration: number) => void }) {
+export function MessageWall({ messages, status, durations, onDurationChange, avatarSrc }: { messages: UIMessage[]; status?: string; durations?: Record<string, number>; onDurationChange?: (key: string, duration: number) => void; avatarSrc?: string }) {
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const scrollToBottom = () => {
@@ -22,7 +22,7 @@ export function MessageWall({ messages, status, durations, onDurationChange }: {
                     const isLastMessage = messageIndex === messages.length - 1;
                     return (
                         <div key={message.id} className="w-full">
-                            {message.role === "user" ? <UserMessage message={message} /> : <AssistantMessage message={message} status={status} isLastMessage={isLastMessage} durations={durations} onDurationChange={onDurationChange} />}
+                            {message.role === "user" ? <UserMessage message={message} /> : <AssistantMessage message={message} status={status} isLastMessage={isLastMessage} durations={durations} onDurationChange={onDurationChange} avatarSrc={avatarSrc} />}
                         </div>
                     );
                 })}
