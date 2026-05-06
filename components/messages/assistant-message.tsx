@@ -8,7 +8,7 @@ import Image from "next/image";
 export function AssistantMessage({ message, status, isLastMessage, durations, onDurationChange, avatarSrc }: { message: UIMessage; status?: string; isLastMessage?: boolean; durations?: Record<string, number>; onDurationChange?: (key: string, duration: number) => void; avatarSrc?: string }) {
     const src = avatarSrc ?? '/logo.png';
     return (
-        <div className="w-full flex gap-2 items-start">
+        <div className="w-full flex gap-2 items-start -ml-4">
             <Avatar className="size-7 ring-1 ring-primary shrink-0 mt-0.5">
                 <AvatarImage src={src} className="object-cover" />
                 <AvatarFallback>
